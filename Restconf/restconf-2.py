@@ -13,3 +13,10 @@ headers = {
 response = requests.request("GET", url, headers=headers, data=payload, verify=False)
 
 print(response.text)
+
+api_data = response.json()
+print("*"*50)
+print(api_data["Cisco-IOS-XE-interfaces-oper:interface"]["description"])
+print("*"*50)
+if api_data["Cisco-IOS-XE-interfaces-oper:interface"]["admin-status"] == "if-state-up":
+  print("Interface is up")
