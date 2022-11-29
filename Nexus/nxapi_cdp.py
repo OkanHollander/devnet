@@ -1,5 +1,6 @@
 import requests
 import json
+import re
 
 switchuser= "cisco"
 switchpassword = "cisco"
@@ -65,3 +66,15 @@ while counter < neighbor_count:
     }
     
     counter += 1
+    
+    ################ SETTING THE CONFIGURATION ################
+    if local_int != "mgmt0":
+        int_name = str.lower(str(local_int[:3]))
+        int_num = re.search(r'[1-9]/[1-9]*', local_int)
+        int_url = "http:/192.168.2.12/api/mo/sys/intf/phys[" + int_name+str(int_num.group(0))+"].json"
+        post_response = requests.post(url=int_url,
+                                      data=json.dumps(body),
+                                      headers=headers,
+                                      cookies=cookies,
+                                      verify=False).json()
+        print(post_response)
