@@ -12,3 +12,13 @@ for org in orgs:
         orgID = org["id"]
         
 # print(orgID)
+
+params = {}
+params["organization_id"] = orgID
+networks = meraki.networks.get_organization_networks(params)
+# pprint(networks)
+for network in networks:
+    if network["name"] == "DevNetAssoc3":
+        netID = network["id"]
+vlans = meraki.vlans.get_network_vlans(netID)
+# print(vlans)
