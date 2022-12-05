@@ -1,3 +1,4 @@
+
 from meraki_sdk.meraki_sdk_client import MerakiSdkClient
 import json
 from pprint import pprint
@@ -24,7 +25,7 @@ for org in orgs:
 params = {}
 params['organization_id'] = orgId
 networks = meraki.networks.get_organization_networks(params)
-pprint(networks)
+# pprint(networks)
 
 # Set NetworkId
 for network in networks:
